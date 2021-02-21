@@ -1,0 +1,214 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <title>Stack</title>
+        <script src="https://kit.fontawesome.com/b7160fc021.js" crossorigin="anonymous"></script>
+        <style type="text/css">
+            body
+            {	
+                background-color: #e5e7e9b6;		
+                margin: 0px;
+            }
+            
+            .name
+            {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+            .Cname
+            {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size:30px;
+                font-weight:bold;
+                color:#000000;
+            }
+            .stextbox
+            {
+                height:30px;
+                width:100%;
+            }	
+            .textbox
+            {
+                height:35px;
+                width:100%;
+            }
+            .button4 
+            {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 10px;
+                
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 0px;
+               
+            }
+            .table-header{
+                padding:10px 15px;
+                height: 50px;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #555555;
+                text-align: left;
+            }
+            .table-data
+            {
+                padding:5px 15px;
+                border-bottom: 1px solid #ddd;
+                height: 50px;
+                
+            }
+            .table-no-data{
+                /* height: 200px; */
+                padding: 50px;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #555555;
+            }
+        </style>
+    </head>
+
+    <body>
+    <div>
+        <div style="display:flex;padding:0px 40px 0px 40px;height: 60px;background-color:#03203C;flex-direction: row;justify-content: space-between;border-bottom: 1px #000000;-webkit-box-shadow: 0 8px 6px -6px black;
+        -moz-box-shadow: 0 8px 6px -6px rgba(100, 100, 100, 0.575);
+             box-shadow: 0 8px 6px -6px rgba(139, 139, 139, 0.349);">
+            <img src="../assets/aws-logo.png">
+            <div style="height:60px;display: flex;flex-direction: row;align-items: center;right: 0%;">
+                <p style="font-weight:bolder;font-family: Arial, Helvetica, sans-serif; font-size: 22px;color: white;">Autonomous IT</p>
+            </div>
+        </div>
+        <div style="height:80px;display: flex;flex-direction: row;align-items: center;justify-content:space-evenly;width: 15%;padding-left: 20px;">
+            <div>
+                <i class="fas fa-home" style="color: #0b0b5f;"></i>
+            </div>
+            <p style="font-weight:bolder;color: #0b0b5f;">/</p>
+            <p style="font-weight:bolder;font-family: Arial, Helvetica, sans-serif;color: #0b0b5f;font-size: 14px;">STACK</p>
+            
+    
+        </div>
+        
+    </div>
+
+    <div id="tablediv" style="display:flex;align-items: center;justify-content: center;width: 100%;flex-direction: column;">
+        
+            
+            <button value="Create Stack" style="height: 40px;width:150px;padding: 10px 5px;align-self: flex-end;margin-right: 40px;background-color: #03203C;color: white;border: none;margin-bottom: 20px;"><a href="home.html" style="text-decoration: none;color: white;">Create Stack</a></button>
+        
+        
+        <div style="display:flex;background-color: white; margin-top: 5px;width: 95%;align-self: center;justify-self: center;flex-direction: column;" id="table">
+            
+            <table style="border-collapse: collapse;width: 100%;" id="dataTable">
+                <thead id="thd">
+                    <tr style="background-color: #f8f9fc;">
+                    </tr>
+                </thead>
+                <tbody id="tby">
+                </tbody>
+            </table>
+                
+            
+        
+        </div>
+    </div>
+        
+
+       
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+            $(function() {
+            $.ajax({
+    
+                url: '/stackdetails',
+                type: 'POST',
+            }).done(function(req){
+                console.log(req);
+                
+                document.getElementById('tablediv').style.display="flex";
+                document.getElementById('table').style.display="flex";
+                var json=['StackName','StackStatus','CreationTime','StackId',]
+
+                var table = document.getElementById("thd");
+                table.innerHTML=""
+                var tr = document.createElement('tr');
+                    for(var j=0;j<json.length;j++){
+                        var td1 = document.createElement('th');
+                        var text1 = document.createTextNode(json[j])
+                        
+                            td1.className="table-header"
+                        
+                        td1.appendChild(text1)
+                        tr.appendChild(td1)
+                tr.style.backgroundColor="#f8f9fc"
+                table.appendChild(tr)
+                }
+
+                var table = document.getElementById("tby");
+                table.innerHTML=""
+                var tr=[]
+                if(req.Stacks.length===0)
+                {
+                    console.log("empty")
+                    tr[0]= document.createElement('tr');
+                    var td1 = document.createElement('td');
+                    var text1 = document.createTextNode("No Stacks Present")
+                    td1.appendChild(text1)
+                    tr[0].appendChild(td1)
+                    td1.className="table-no-data"
+                    table.appendChild(tr[0])
+                }
+                else
+                {
+                for(var i=0;i<=req.Stacks.length;i++){
+                
+                
+                tr[i] = document.createElement('tr');
+                tr[i].id=i+'row'
+                
+                    
+                    
+
+                    var td1 = document.createElement('td');
+                    var text1 = document.createTextNode(req.Stacks[i].StackName)
+                    td1.className="table-data"
+                    td1.appendChild(text1)
+                    tr[i].appendChild(td1)
+                   
+
+                    var td1 = document.createElement('td');
+                    var text1 = document.createTextNode(req.Stacks[i].StackStatus)
+                    td1.appendChild(text1)
+                    tr[i].appendChild(td1)
+                    td1.className="table-data"
+                    // td1.className="text-center"
+                    // td1.id = i + 'ReservationTimedOut'
+
+                    var td1 = document.createElement('td');
+                    var text1 = document.createTextNode(req.Stacks[i].CreationTime)
+                    td1.appendChild(text1)
+                    tr[i].appendChild(td1)
+                    td1.className="table-data"
+
+                    var td1 = document.createElement('td');
+                    var text1 = document.createTextNode(req.Stacks[i].StackId)
+                    td1.className="table-data"
+                    td1.appendChild(text1)
+                    tr[i].appendChild(td1)
+                    // td1.className="text-center"
+                    // td1.id = i + 'ReservationsRejected'
+
+            table.appendChild(tr[i])
+            
+            }
+        }
+                
+            }).fail(function(req){
+                console.log("mission failed");
+            })
+        });
+        </script>
+    </body>
+    
+</html>

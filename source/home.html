@@ -1,0 +1,166 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <title>Stack</title>
+        <script src="https://kit.fontawesome.com/b7160fc021.js" crossorigin="anonymous"></script>
+        <style type="text/css">
+            body
+            {	
+                background-color: #e5e7e9b6;		
+                margin: 0px;
+            }
+            
+            .name
+            {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+            .Cname
+            {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size:30px;
+                font-weight:bold;
+                color:#000000;
+            }
+            .stextbox
+            {
+                height:30px;
+                width:100%;
+            }	
+            .textbox
+            {
+                height:35px;
+                width:100%;
+            }
+            .button4 
+            {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 10px;
+                
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 0px;
+               
+            }
+        </style>
+    </head>
+
+    <body>
+    <div>
+        <div>
+            <div style="display:flex;padding:0px 40px 0px 40px;height: 60px;background-color:#03203C;flex-direction: row;justify-content: flex-end;border-bottom: 1px #000000;-webkit-box-shadow: 0 8px 6px -6px black;
+            -moz-box-shadow: 0 8px 6px -6px rgba(100, 100, 100, 0.575);
+                 box-shadow: 0 8px 6px -6px rgba(139, 139, 139, 0.349);">
+                
+                <div style="height:60px;display: flex;flex-direction: row;align-items: center;right: 0%;">
+                    <a href="stack.html" style="text-decoration: none;"><p style="font-weight:bolder;font-family: Arial, Helvetica, sans-serif; font-size: 22px;color: white;">Autonomous IT</p></a>
+                </div>
+            </div>
+            <div style="height:80px;display: flex;flex-direction: row;align-items: center;justify-content:space-evenly;width: 20%;padding-left: 20px;">
+                <div>
+                    <i class="fas fa-home" style="color: #0b0b5f;"></i>
+                </div>
+                <p style="font-weight:bolder;color: #0b0b5f;">/</p>
+                <a href="stack.html" style="text-decoration: none;"><p style="text-decoration: none;font-weight:bolder;font-family: Arial, Helvetica, sans-serif;color: #0b0b5f;font-size: 14px;">STACK</p></a>
+                <p style="font-weight:bolder;color: #0b0b5f;">/</p>
+                <p style="font-weight:bolder;font-family: Arial, Helvetica, sans-serif;color: #0b0b5f;font-size: 14px;">CREATE</p>
+                
+        
+            </div>
+            
+        </div>
+        <div style="background-color: white;margin: 10px 200px;padding:20px 45px;padding-bottom: 5px;margin-bottom:10px;">
+            <h3 style="font-weight:bolder;font-family: Arial, Helvetica, sans-serif;">Creating and Customizing Stack</h5>
+            <p style="color: grey;padding-bottom: 10px;">This Solution automates the process of producing two EC2 instance with wordpress and MySQL database configured in it. It is capable of balancing load when the threshold capacity exceeds 70%.</p>
+                
+            <form action="/stackcreation" method="POST" name="formname">
+                    <div>
+                        <label class="name" for="sname" style="color: rgb(31, 166, 255);">Stack Name</label></div>
+                        <br>
+                        <div>
+                            <input class="stextbox" type="text" value="" id="sname" name="sname">
+                        </div>
+                        <br/>
+                        <div>
+                            <input type="radio" name="StackN" id="Default"> 
+                            <label for="D">Default</label>
+                            <input type="radio" name="StackN" id="Customize"> 
+                            <label for="C">Customize</label>
+                        </div>
+                        <br>
+                    </div>
+                
+        </div>
+        <div style="background-color: white;margin: 10px 200px;margin-top:20px;padding:20px 45px;padding-bottom: 45px;">
+            <h3 style="font-weight:bolder;font-family: Arial, Helvetica, sans-serif; ">Customize Your Stack</h3>
+                    <br>
+                    <div>
+                        <label class="name" for="kpair"  style="color: rgb(31, 166, 255);">KeyPair</label>
+                    </div>
+                    <br>
+                    <div>
+                        <input class="textbox" type="text" value="" id="kpair" name="kpair">
+                    </div>
+                    <br />
+                    <div>
+                        <label class="name" for="itype"  style="color: rgb(31, 166, 255);">Instance Type</label>
+                    </div>
+                    <br>
+                    <div>
+                        <input class="textbox" type="text" value="" id="itype" name="itype">
+                    </div>
+                    <br />
+                    <div>
+                        <label class="name" for="dbname"  style="color: rgb(31, 166, 255);">DBName</label>
+                    </div>
+                    <br>
+                    <div>
+                        <input class="textbox" type="text" value="" id="dbname" name="dbname">
+                    </div>
+                    <br /> 
+                    <div>
+                        <label class="name" for="dbuser"  style="color: rgb(31, 166, 255);">DBUser</label>
+                    </div>
+                    <br>
+                    <div>
+                        <input class="textbox" type="text" value="" id="dbuser" name="dbuser">
+                    </div>
+                    <br />
+                    <div>
+                        <label class="name" for="dbpwd"  style="color: rgb(31, 166, 255);">DB Password</label>
+                    </div>
+                    <br>
+                    <div>
+                        <input class="textbox" type="password" id="dbpwd" name="dbpwd">
+                    </div>
+                    <br>
+                    <div>
+                        <label class="name" for="dbrpwd"  style="color: rgb(31, 166, 255);">DB Root Password</label>
+                    </div>
+                    <br>
+                    <div>
+                        <input class="textbox" type="password" id="dbrpwd" name="dbrpwd">
+                    </div>
+                    <br>
+                    <div>
+                        <label class="name" for="ssh"  style="color: rgb(31, 166, 255);">SSH Location</label>
+                    </div>
+                    <br>
+                    <div>
+                        <input class="textbox" type="text" id="ssh" name="ssh">
+                    </div>
+                    <br>
+                    <button class="button4" type="submit">Launch Stack</button>
+                </form>
+        </div>
+            
+
+        </div>
+
+    </body>
+</html>
